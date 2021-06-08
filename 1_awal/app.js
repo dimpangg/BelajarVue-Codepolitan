@@ -1,5 +1,5 @@
 const dataProduct = {
-    maximum: 20,
+    maximum: 50,
     products: [
         {
             "id": "429",
