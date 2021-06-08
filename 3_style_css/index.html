@@ -7,16 +7,22 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
         <title>Vue JS Basic</title>
     </head>
     <body>
 
         <div class="container" id="app">
-            <nav class="navbar navbar-light bg-light fixed-top mb-5" v-if="cart.length > 0">
-                <div class="navbar-text ml-auto">
-                    <b>Cart:</b>
-                    <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+            <nav class="navbar navbar-light fixed-top">
+                <div class="navbar-text ml-auto d-flex">
+                    <button class="btn btn-sm btn-outline-success" @click="style.sliderStatus = !style.sliderStatus">
+                        <i class="fas fa-dollar-sign"></i>
+                    </button>
+                    <div class="ml-2" v-if="cart.length > 0">
+                        <b>Cart:</b>
+                        <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+                    </div>
                 </div>
             </nav>
 
