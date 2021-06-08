@@ -8,6 +8,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
         <link rel="stylesheet" href="app.css">
 
         <title>Vue JS Basic</title>
@@ -29,7 +30,7 @@
 
             <h1>My Shop</h1>
 
-            <transition name="fade">
+            <transition name="custom" enter-active-class="animated fadeInDown" leave-active-class="animated slideOutRight">
                 <div v-if="style.sliderStatus">
                     <div class="align-items-center" :class="sliderState">
                         <label for="" :class="style.label">Max</label>
