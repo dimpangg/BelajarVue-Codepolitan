@@ -38,7 +38,7 @@ Vue.component('product-list', {
     template: `<transition-group name="fade" tag="div" @beforEnter="before" @enter="enter" @leave="leave">
     <div class="row d-none mb-3 align-items-center" v-for="(item, index) in products" :key="item.id" v-if="item.price <= Number(maximum)" :data-index="index">
         <div class="col-1 m-auto">
-            <button class="btn btn-info" v-on:click="addItem(item)">+</button>
+            <button class="btn btn-info" @click="$emit('add', item)">+</button>
         </div>
 
         <div class="col-sm-4">
@@ -99,7 +99,23 @@ var app = new Vue({
         }
     },
     methods: {
-        
+        addItem: function (product) {
+            var productIndex;
+            var productExist = this.cart.filter(function(item, index) {
+                if (item.product.id == Number(product.id)) {
+                    productIndex = index;
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            if (productExist.length) {
+                this.cart[productIndex].qty++;
+            } else {
+                this.cart.push({product: product, qty: 1})
+            }
+        },
         deleteItem: function (key) {
             if (this.cart[key].qty > 1) {
                 this.cart[key].qty--;
