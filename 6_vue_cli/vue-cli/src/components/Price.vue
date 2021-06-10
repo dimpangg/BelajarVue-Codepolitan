@@ -1,5 +1,5 @@
 <template>
-    <span >{{ this.prefix + Number.parseFloat(this.value).toFixed(this.precision) }}</span>
+    <span>{{ this.prefix + Number.parseFloat(this.value).toFixed(this.precision) }}</span>
 </template>
 
 <script>

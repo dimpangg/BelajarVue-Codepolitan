@@ -1,22 +1,52 @@
 <template>
   <div id="app" class="container mt-5">
     <h1>IDShop</h1>
-    <p class="animated fadeInLeft">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt ab dolorum minima doloremque perspiciatis culpa officia eum sit officiis asperiores! Ab facilis aspernatur minima enim corporis assumenda, quod nisi eaque.</p>
-    <font-awesome-icon icon="shopping-cart"></font-awesome-icon>
-    <price :value="4.23"></price>
+    <product-list :products="products" :maximum="maximum" @add="addItem"></product-list>
   </div>
 </template>
 
 <script>
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import Price from "./components/Price.vue"
+// import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import ProductList from "./components/ProductList.vue";
 
 export default {
   name: "App",
-  components: {
-    FontAwesomeIcon,
-    Price
+  data: function () {
+    return {
+      maximum: 50,
+      products: [],
+      cart: []
+    }
   },
+  components: {
+    ProductList
+  },
+  mounted: function () {
+    fetch('https://hplussport.com/api/products/order/price')
+        .then(response => response.json())
+        .then(data => {
+            this.products = data;
+        });
+  },
+  methods: {
+    addItem: function (product) {
+        let productIndex;
+        let productExist = this.cart.filter(function(item, index) {
+            if (item.product.id == Number(product.id)) {
+                productIndex = index;
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (productExist.length) {
+            this.cart[productIndex].qty++;
+        } else {
+            this.cart.push({product: product, qty: 1})
+        }
+    }
+  }
 };
 </script>
 
