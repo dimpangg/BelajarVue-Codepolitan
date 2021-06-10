@@ -32,6 +32,7 @@
                 </tr>
             </tbody>
         </table>
+        <router-link class="btn btn-outline-info" to="/">Back To Shop</router-link>
     </div>
 </template>
 
