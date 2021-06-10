@@ -1,24 +1,24 @@
 <template>
     <nav class="navbar navbar-light fixed-top">
         <div class="navbar-text ms-auto d-flex">
-            <button class="btn btn-sm btn-outline-success" @click="$emit('toggle-slide')">
+            <button class="btn btn-sm btn-outline-success me-1" @click="$emit('toggle-slide')">
                 <font-awesome-icon icon="dollar-sign"></font-awesome-icon>
             </button>
-            <div class="ms-2 dropdown" v-if="cart.length > 0">
-                <button class="btn btn-success btn-sm dropdown-toggle" id="dropdownCart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="badge badge-pill badge-success">{{ cartQty }}</span>
+            <div class="me-2 dropdown" v-if="cart.length > 0">
+                <button class="btn btn-success btn-sm dropdown-toggle" id="dropdownCart" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="badge rounded-pill bg-success me-1">{{ cartQty }}</span>
                     <font-awesome-icon icon="shopping-cart"></font-awesome-icon>
                     <price :value="Number(cartTotal)"></price>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCart">
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownCart">
                     <div v-for="(item, index) in cart" :key="index">
                         <div class="dropdown-item-text text-nowrap text-right">
-                            <span class="badge badge-pill badge-warning align-text-top mr-1">
+                            <span class="badge rounded-pill bg-warning align-text-top me-1">
                                 {{ item.qty }}
                             </span>
                             {{ item.product.name }}
                             <b>{{ item.product.price * item.qty | currencyFormat }}</b>
-                            <a href="#" class="badge badge-danger text-white" @click.stop="$emit('delete-item', index)">-</a>
+                            <a href="#" class="text-decoration-none badge bg-danger align-text-top text-white ms-1" @click.stop="$emit('delete-item', index)">-</a>
                         </div>
                     </div>
                 </div>
@@ -45,3 +45,4 @@ export default {
     }
 }
 </script>
+
