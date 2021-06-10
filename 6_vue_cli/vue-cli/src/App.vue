@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container mt-5">
     <h1>IDShop</h1>
-    <navbar :cart="cart" :cartQty="cartQty" :cartTotal="cartTotal" @toggle="toggleSlider"></navbar>
+    <navbar :cart="cart" :cartQty="cartQty" :cartTotal="cartTotal" @toggle="toggleSlider" @delete="deleteItem"></navbar>
     <price-slider :sliderStatus="sliderStatus" :maximum.sync="maximum"></price-slider>
     <product-list :products="products" :maximum="maximum" @add="addItem"></product-list>
   </div>
@@ -69,6 +69,13 @@ export default {
             this.cart[productIndex].qty++;
         } else {
             this.cart.push({product: product, qty: 1})
+        }
+    },
+    deleteItem: function (key) {
+        if (this.cart[key].qty > 1) {
+            this.cart[key].qty--;
+        } else {
+            this.cart.splice(key, 1);
         }
     }
   }
